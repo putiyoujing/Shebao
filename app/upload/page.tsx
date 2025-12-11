@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Calculator, CheckCircle, AlertCircle } from 'lucide-react'
-import CitySelector from '@/components/CitySelector'
-import FileUpload from '@/components/FileUpload'
+import CitySelector from '../../components/CitySelector'
+import FileUpload from '../../components/FileUpload'
 
 export default function UploadPage() {
   const [selectedCity, setSelectedCity] = useState('')

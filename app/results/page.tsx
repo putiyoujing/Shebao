@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Download, RefreshCw, AlertCircle } from 'lucide-react'
-import { exportToExcel } from '@/utils/excelParser'
+import { exportToExcel } from '../../utils/excelParser'
 
 interface Result {
   id: number
