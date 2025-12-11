@@ -35,7 +35,8 @@ export async function POST(request: NextRequest) {
     }
 
     // 解析 Excel 文件
-    const salaries = await parseSalariesExcel(file)
+    const buffer = await file.arrayBuffer()
+    const salaries = parseSalariesExcel(buffer)
 
     // 清空现有数据
     const { error: deleteError } = await supabaseAdmin

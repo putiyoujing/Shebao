@@ -3,13 +3,14 @@ import { supabaseAdmin } from '@/lib/supabase'
 import { parseCitiesExcel } from '@/utils/excelParser'
 
 export async function POST(request: NextRequest) {
+  // 添加 CORS 头
+  const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  }
+
   try {
-    // 添加 CORS 头
-    const corsHeaders = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    }
 
     let formData: FormData
     try {
@@ -52,7 +53,8 @@ export async function POST(request: NextRequest) {
     let cities
     try {
       console.log('开始解析 Excel 文件:', file.name)
-      cities = await parseCitiesExcel(file)
+      const buffer = await file.arrayBuffer()
+      cities = parseCitiesExcel(buffer)
       console.log('Excel 解析成功，城市数量:', cities.length)
     } catch (parseError) {
       console.error('Excel 解析错误:', parseError)

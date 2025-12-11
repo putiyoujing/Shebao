@@ -47,7 +47,7 @@ export default function FileUpload({
 
         // 清空文件列表
         if (result.success) {
-          acceptedFiles.length = 0
+          // 文件上传成功，可以在父组件中处理文件列表清空
         }
       } catch (error) {
         setUploadStatus({
@@ -67,7 +67,8 @@ export default function FileUpload({
   })
 
   const removeFile = () => {
-    acceptedFiles.length = 0
+    // 注意：react-dropzone 的 acceptedFiles 是只读的
+    // 这里只清空状态，实际的文件列表会在重新渲染时更新
     setUploadStatus({ type: null, message: '' })
   }
 
